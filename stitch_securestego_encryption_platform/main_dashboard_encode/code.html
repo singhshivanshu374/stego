@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SecureStego - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#242a33",
+                        "inverse-on-surface": "#2b3139",
+                        "surface-container-low": "#161c24",
+                        "on-secondary-fixed": "#001a42",
+                        "primary-fixed": "#71f8e4",
+                        "tertiary-container": "#f38764",
+                        "primary-container": "#14b8a6",
+                        "tertiary-fixed": "#ffdbd0",
+                        "secondary-container": "#0566d9",
+                        "on-tertiary-fixed-variant": "#7c2d11",
+                        "error": "#ffb4ab",
+                        "primary": "#4fdbc8",
+                        "on-primary-fixed": "#00201c",
+                        "on-primary": "#003731",
+                        "background": "#0e141c",
+                        "tertiary": "#ffb59e",
+                        "on-error": "#690005",
+                        "on-secondary-container": "#e6ecff",
+                        "inverse-primary": "#006b5f",
+                        "on-surface-variant": "#bbcac6",
+                        "surface-dim": "#0e141c",
+                        "on-secondary": "#002e6a",
+                        "secondary": "#adc6ff",
+                        "surface-container": "#1a2028",
+                        "on-tertiary-container": "#6c2106",
+                        "error-container": "#93000a",
+                        "on-background": "#dde3ee",
+                        "surface-bright": "#343a42",
+                        "on-tertiary-fixed": "#3a0b00",
+                        "surface-container-lowest": "#090f16",
+                        "on-primary-fixed-variant": "#005048",
+                        "surface-container-highest": "#2f353e",
+                        "surface": "#0e141c",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#004395",
+                        "outline-variant": "#3c4947",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-primary-container": "#00423b",
+                        "on-tertiary": "#5e1800",
+                        "outline": "#859490",
+                        "primary-fixed-dim": "#4fdbc8",
+                        "on-surface": "#dde3ee",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "surface-variant": "#2f353e",
+                        "inverse-surface": "#dde3ee",
+                        "tertiary-fixed-dim": "#ffb59e",
+                        "surface-tint": "#4fdbc8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "48px",
+                        "xl": "80px",
+                        "xs": "4px",
+                        "base": "8px",
+                        "container-max": "1200px",
+                        "gutter": "24px",
+                        "md": "24px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-code": ["JetBrains Mono"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-code": ["13px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0A0E14; /* Base Level 0 */
+            color: theme('colors.on-background');
+        }
+        .drag-zone-active {
+            border-color: theme('colors.primary-container');
+            background-color: rgba(20, 184, 166, 0.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-body-md">
+<!-- TopAppBar -->
+<header class="bg-surface-container dark:bg-surface-container border-b border-outline-variant dark:border-outline-variant w-full sticky top-0 z-50">
+<div class="flex justify-between items-center w-full h-16 px-gutter max-w-container-max mx-auto">
+<div class="flex items-center gap-base">
+<img alt="SecureStego Shield Logo" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv1YCkc_TUOBFbk-6aam9P3ukmxcaiptv91UxkZuB3L8u7qUs0YN8u8-_vQbmq9CN3sBgoVRTnJbOYouDd6iIcqOUco9fci_PEDN1sJaovPsSULj5jqf5u_llIiPrjJ4HSLEzi5pjaVbZP-lrb1Yfb7ptJsdt-K-MGQPTKlj7Ff-t5whhtbIpui21t3DxfNgHPsOxB10k4RDTGWlf5WcQf7q6xywHW9GsWwny2981nPKKNcRCOmk9lxg"/>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface dark:text-on-surface tracking-tight">SecureStego</span>
+</div>
+<button class="font-label-code text-label-code text-on-surface-variant hover:text-primary transition-colors flex items-center gap-xs px-sm py-xs rounded-lg hover:bg-surface-bright duration-150">
+                Logout
+                <span class="material-symbols-outlined text-[18px]">logout</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full px-gutter max-w-container-max mx-auto py-lg flex flex-col gap-lg">
+<!-- Header & Tab Switcher -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md w-full">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-xs">Steganography Studio</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Securely embed or extract hidden data from media files.</p>
+</div>
+<!-- Pill Style Tab Switcher -->
+<div class="bg-surface-dim p-xs rounded-lg flex items-center border border-outline-variant/30">
+<button class="px-md py-sm rounded bg-surface-container-high text-primary shadow-[0px_4px_12px_rgba(0,0,0,0.2)] font-label-code text-label-code transition-all">
+                    Encode
+                </button>
+<button class="px-md py-sm rounded text-on-surface-variant hover:text-on-surface font-label-code text-label-code transition-all hover:bg-surface-container/50">
+                    Decode
+                </button>
+</div>
+</div>
+<!-- Encode Canvas -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Media Input (Drag & Drop) -->
+<div class="lg:col-span-7 flex flex-col gap-md">
+<div class="bg-[#121820] border border-[#2D3748] rounded-xl p-lg flex flex-col items-center justify-center min-h-[400px] border-dashed border-2 border-outline-variant hover:border-primary-container transition-colors group cursor-pointer relative overflow-hidden" id="dropzone">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-surface-container/20 pointer-events-none"></div>
+<div class="z-10 flex flex-col items-center text-center gap-sm">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center mb-sm group-hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-[32px] text-on-surface-variant group-hover:text-primary transition-colors">cloud_upload</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Carrier Image</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">Drag &amp; drop your carrier image here, or click to browse. Supported formats: PNG, JPG (Max 10MB).</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Payload & Settings -->
+<div class="lg:col-span-5 flex flex-col gap-md">
+<!-- Secret Message Box -->
+<div class="bg-[#121820] border border-[#2D3748] rounded-xl p-md flex flex-col gap-sm shadow-sm">
+<label class="font-label-code text-label-code text-on-surface flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">subject</span>
+                        Secret Payload
+                    </label>
+<textarea class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-sm font-body-sm text-body-sm text-on-surface placeholder-on-surface-variant/50 focus:border-secondary-container focus:ring-1 focus:ring-secondary-container outline-none transition-all resize-none min-h-[120px]" placeholder="Enter the text you wish to hide..."></textarea>
+<div class="flex justify-end">
+<span class="font-label-code text-[11px] text-on-surface-variant">0 / 2048 bytes</span>
+</div>
+</div>
+<!-- Security Settings -->
+<div class="bg-[#121820] border border-[#2D3748] rounded-xl p-md flex flex-col gap-md shadow-sm">
+<div class="flex items-center justify-between">
+<label class="font-label-code text-label-code text-on-surface flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">security</span>
+                            Encryption Mode
+                        </label>
+</div>
+<!-- Mode Toggle (Segmented) -->
+<div class="grid grid-cols-2 gap-xs bg-surface-dim p-xs rounded-lg border border-outline-variant/30">
+<button class="bg-surface-container-highest text-on-surface py-sm rounded flex items-center justify-center gap-xs font-label-code text-label-code shadow-sm">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+                            Password
+                        </button>
+<button class="text-on-surface-variant hover:text-on-surface py-sm rounded flex items-center justify-center gap-xs font-label-code text-label-code transition-colors">
+<span class="material-symbols-outlined text-[16px]">person</span>
+                            Specific User
+                        </button>
+</div>
+<!-- Password Input -->
+<div class="flex flex-col gap-xs mt-sm">
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-sm py-sm font-body-sm text-body-sm text-on-surface placeholder-on-surface-variant/50 focus:border-secondary-container focus:ring-1 focus:ring-secondary-container outline-none transition-all" placeholder="Enter encryption key" type="password"/>
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">key</span>
+</div>
+<!-- Strength Indicator -->
+<div class="flex items-center gap-xs mt-1">
+<div class="h-1 flex-1 bg-outline-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-1/3 rounded-full"></div>
+</div>
+<span class="font-label-code text-[11px] text-on-surface-variant">Weak</span>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full bg-primary-container hover:bg-primary text-on-primary-fixed py-md rounded-lg font-headline-sm text-[16px] flex items-center justify-center gap-sm transition-colors mt-auto shadow-[0_0_15px_rgba(20,184,166,0.2)]">
+<span class="material-symbols-outlined">enhanced_encryption</span>
+                    Encode &amp; Download
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full mt-auto border-t border-surface-container-highest">
+<div class="flex flex-col md:flex-row justify-between items-center w-full py-md px-gutter max-w-container-max mx-auto gap-md">
+<span class="font-label-code text-label-code text-on-surface-variant">© 2024 SecureStego. Technical Minimalism for Secure Communications.</span>
+<div class="flex items-center gap-md">
+<a class="font-body-sm text-body-sm text-secondary dark:text-secondary hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-secondary dark:text-secondary hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-secondary dark:text-secondary hover:text-primary transition-colors" href="#">API Documentation</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple drag and drop visual feedback
+        const dropzone = document.getElementById('dropzone');
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropzone.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight(e) {
+            dropzone.classList.add('drag-zone-active');
+        }
+
+        function unhighlight(e) {
+            dropzone.classList.remove('drag-zone-active');
+        }
+    </script>
+</body></html>

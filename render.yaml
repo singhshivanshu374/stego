@@ -1,0 +1,36 @@
+﻿# render.yaml — Render deployment config (place in project ROOT)
+# This tells Render exactly how to build and run SecureStego.
+# Render reads this file automatically when you connect your GitHub repo.
+
+services:
+  - type: web
+    name: securestego
+    runtime: docker
+    # Use the ROOT Dockerfile (builds frontend + backend together)
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: securestego-db
+          property: connectionString
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: PRIVATE_KEY_MASTER_SECRET
+        generateValue: true
+      - key: STORAGE_BACKEND
+        value: local
+      - key: RATE_LIMIT_ENABLED
+        value: "False"
+      - key: MONGO_ENABLED
+        value: "False"
+      - key: DEBUG
+        value: "False"
+
+databases:
+  - name: securestego-db
+    plan: free
+    databaseName: securestego
+    user: securestego

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SecureStego - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#242a33",
+                        "inverse-on-surface": "#2b3139",
+                        "surface-container-low": "#161c24",
+                        "on-secondary-fixed": "#001a42",
+                        "primary-fixed": "#71f8e4",
+                        "tertiary-container": "#f38764",
+                        "primary-container": "#14b8a6",
+                        "tertiary-fixed": "#ffdbd0",
+                        "secondary-container": "#0566d9",
+                        "on-tertiary-fixed-variant": "#7c2d11",
+                        "error": "#ffb4ab",
+                        "primary": "#4fdbc8",
+                        "on-primary-fixed": "#00201c",
+                        "on-primary": "#003731",
+                        "background": "#0e141c",
+                        "tertiary": "#ffb59e",
+                        "on-error": "#690005",
+                        "on-secondary-container": "#e6ecff",
+                        "inverse-primary": "#006b5f",
+                        "on-surface-variant": "#bbcac6",
+                        "surface-dim": "#0e141c",
+                        "on-secondary": "#002e6a",
+                        "secondary": "#adc6ff",
+                        "surface-container": "#1a2028",
+                        "on-tertiary-container": "#6c2106",
+                        "error-container": "#93000a",
+                        "on-background": "#dde3ee",
+                        "surface-bright": "#343a42",
+                        "on-tertiary-fixed": "#3a0b00",
+                        "surface-container-lowest": "#090f16",
+                        "on-primary-fixed-variant": "#005048",
+                        "surface-container-highest": "#2f353e",
+                        "surface": "#121820",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#004395",
+                        "outline-variant": "#2D3748",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-primary-container": "#00423b",
+                        "on-tertiary": "#5e1800",
+                        "outline": "#859490",
+                        "primary-fixed-dim": "#4fdbc8",
+                        "on-surface": "#dde3ee",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "surface-variant": "#2f353e",
+                        "inverse-surface": "#dde3ee",
+                        "tertiary-fixed-dim": "#ffb59e",
+                        "surface-tint": "#4fdbc8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "48px",
+                        "xl": "80px",
+                        "xs": "4px",
+                        "base": "8px",
+                        "container-max": "1200px",
+                        "gutter": "24px",
+                        "md": "24px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter", "sans-serif"],
+                        "headline-sm": ["Inter", "sans-serif"],
+                        "label-code": ["JetBrains Mono", "monospace"],
+                        "display-lg": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "body-sm": ["Inter", "sans-serif"],
+                        "headline-md-mobile": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-code": ["13px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .drag-active {
+            border-color: #14b8a6 !important;
+            background-color: rgba(20, 184, 166, 0.05) !important;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="bg-surface-container border-b border-outline-variant w-full sticky top-0 z-50">
+<div class="flex justify-between items-center w-full h-16 px-gutter max-w-container-max mx-auto">
+<div class="flex items-center gap-sm">
+<img alt="SecureStego Logo" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv1YCkc_TUOBFbk-6aam9P3ukmxcaiptv91UxkZuB3L8u7qUs0YN8u8-_vQbmq9CN3sBgoVRTnJbOYouDd6iIcqOUco9fci_PEDN1sJaovPsSULj5jqf5u_llIiPrjJ4HSLEzi5pjaVbZP-lrb1Yfb7ptJsdt-K-MGQPTKlj7Ff-t5whhtbIpui21t3DxfNgHPsOxB10k4RDTGWlf5WcQf7q6xywHW9GsWwny2981nPKKNcRCOmk9lxg"/>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">SecureStego</span>
+</div>
+<button class="flex items-center gap-xs px-md py-sm rounded-lg hover:bg-surface-bright transition-colors text-on-surface-variant font-body-sm text-body-sm opacity-80 hover:opacity-100 duration-150 border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+                Logout
+            </button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-container-max mx-auto px-gutter py-xl flex flex-col items-center">
+<!-- Tab Switcher (Pill Style) -->
+<div class="bg-surface-container-lowest p-xs rounded-full inline-flex items-center gap-xs mb-lg border border-outline-variant">
+<button class="px-xl py-sm rounded-full font-body-sm text-body-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors">
+                Encode
+            </button>
+<button class="px-xl py-sm rounded-full bg-surface border border-outline-variant shadow-lg font-body-sm text-body-sm font-semibold text-primary transition-colors">
+                Decode
+            </button>
+</div>
+<!-- Dashboard Grid / Workspace -->
+<div class="w-full max-w-4xl bg-surface border border-outline-variant rounded-xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+<!-- Left: Drag and Drop Zone -->
+<div class="flex-1 p-lg border-b md:border-b-0 md:border-r border-outline-variant flex flex-col">
+<div class="mb-md">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Target Media</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Upload the steganographic image for decryption.</p>
+</div>
+<div class="flex-1 min-h-[300px] border-2 border-dashed border-outline-variant hover:border-primary-container rounded-lg bg-surface-container-low flex flex-col items-center justify-center p-md transition-all duration-200 cursor-pointer group" id="dropzone">
+<div class="h-16 w-16 rounded-full bg-surface-container flex items-center justify-center mb-md group-hover:bg-primary-container/20 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[32px] text-on-surface-variant group-hover:text-primary">upload_file</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-medium text-center">Drag &amp; Drop image here</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs text-center">PNG, JPG, BMP (Max 50MB)</p>
+<button class="mt-md px-md py-sm rounded border border-outline-variant text-on-surface-variant font-body-sm text-body-sm hover:bg-surface-container-high transition-colors">
+                        Browse Files
+                    </button>
+</div>
+</div>
+<!-- Right: Controls & Result -->
+<div class="flex-1 p-lg bg-surface-container-low flex flex-col justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-sm">Decryption Settings</h3>
+<div class="space-y-md mt-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-code text-label-code text-on-surface-variant uppercase tracking-wider">Passphrase (Optional)</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">key</span>
+<input class="w-full bg-surface-container border border-outline-variant rounded-lg pl-[40px] pr-sm py-sm text-on-surface font-body-sm text-body-sm focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none transition-all" placeholder="Enter extraction key" type="password"/>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-code text-label-code text-on-surface-variant uppercase tracking-wider">Algorithm Standard</label>
+<select class="w-full bg-surface-container border border-outline-variant rounded-lg px-sm py-sm text-on-surface font-body-sm text-body-sm focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none appearance-none">
+<option>LSB (Least Significant Bit) Auto-detect</option>
+<option>AES-256 Encrypted Payload</option>
+</select>
+</div>
+</div>
+<button class="w-full mt-lg bg-primary-container hover:bg-[#119f8e] text-white font-body-md text-body-md font-semibold py-sm rounded-lg shadow-lg flex items-center justify-center gap-sm transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-[20px]">lock_open</span>
+                        Decode Payload
+                    </button>
+</div>
+<!-- Result Area (Readonly) -->
+<div class="mt-xl">
+<h4 class="font-label-code text-label-code text-on-surface-variant mb-xs flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+                        Extracted Data (Read-only)
+                    </h4>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-sm min-h-[120px] font-label-code text-label-code text-on-surface overflow-y-auto">
+<span class="text-on-surface-variant/50 italic">Awaiting decryption sequence...</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity Audit Log -->
+<div class="w-full max-w-4xl mt-xl">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-md">Recent Activity</h3>
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-high border-b border-outline-variant">
+<tr>
+<th class="py-sm px-md font-label-code text-label-code text-on-surface-variant font-medium">Status</th>
+<th class="py-sm px-md font-label-code text-label-code text-on-surface-variant font-medium">Operation</th>
+<th class="py-sm px-md font-label-code text-label-code text-on-surface-variant font-medium">File Name</th>
+<th class="py-sm px-md font-label-code text-label-code text-on-surface-variant font-medium">Timestamp</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-sm px-md">
+<span class="inline-flex items-center gap-xs text-primary bg-primary/10 px-2 py-1 rounded text-xs font-medium">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                    Success
+                                </span>
+</td>
+<td class="py-sm px-md text-on-surface">Encode (AES-256)</td>
+<td class="py-sm px-md font-label-code text-on-surface-variant">Q4_Financials.png</td>
+<td class="py-sm px-md text-on-surface-variant">Today, 14:32 UTC</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-sm px-md">
+<span class="inline-flex items-center gap-xs text-[#ffb4ab] bg-[#93000a]/20 px-2 py-1 rounded text-xs font-medium">
+<span class="material-symbols-outlined text-[14px]">error</span>
+                                    Failed
+                                </span>
+</td>
+<td class="py-sm px-md text-on-surface">Decode</td>
+<td class="py-sm px-md font-label-code text-on-surface-variant">IMG_8932.jpg</td>
+<td class="py-sm px-md text-on-surface-variant">Today, 11:05 UTC</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-sm px-md">
+<span class="inline-flex items-center gap-xs text-primary bg-primary/10 px-2 py-1 rounded text-xs font-medium">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                    Success
+                                </span>
+</td>
+<td class="py-sm px-md text-on-surface">Decode (LSB)</td>
+<td class="py-sm px-md font-label-code text-on-surface-variant">blueprint_v2.bmp</td>
+<td class="py-sm px-md text-on-surface-variant">Yesterday, 09:12 UTC</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full mt-auto border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center w-full py-md px-gutter max-w-container-max mx-auto">
+<span class="font-label-code text-label-code text-on-surface-variant">
+                © 2024 SecureStego. Technical Minimalism for Secure Communications.
+            </span>
+<div class="flex gap-md mt-sm md:mt-0">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">API Documentation</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple drag and drop interaction simulation
+        const dropzone = document.getElementById('dropzone');
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropzone.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight(e) {
+            dropzone.classList.add('drag-active');
+        }
+
+        function unhighlight(e) {
+            dropzone.classList.remove('drag-active');
+        }
+    </script>
+</body></html>

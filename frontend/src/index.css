@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface-container-high: #242a33;
+  --color-inverse-on-surface: #2b3139;
+  --color-surface-container-low: #161c24;
+  --color-on-secondary-fixed: #001a42;
+  --color-primary-fixed: #71f8e4;
+  --color-tertiary-container: #f38764;
+  --color-primary-container: #14b8a6;
+  --color-tertiary-fixed: #ffdbd0;
+  --color-secondary-container: #0566d9;
+  --color-on-tertiary-fixed-variant: #7c2d11;
+  --color-error: #ffb4ab;
+  --color-primary: #4fdbc8;
+  --color-on-primary-fixed: #00201c;
+  --color-on-primary: #003731;
+  --color-background: #0e141c;
+  --color-tertiary: #ffb59e;
+  --color-on-error: #690005;
+  --color-on-secondary-container: #e6ecff;
+  --color-inverse-primary: #006b5f;
+  --color-on-surface-variant: #bbcac6;
+  --color-surface-dim: #0e141c;
+  --color-on-secondary: #002e6a;
+  --color-secondary: #adc6ff;
+  --color-surface-container: #1a2028;
+  --color-on-tertiary-container: #6c2106;
+  --color-error-container: #93000a;
+  --color-on-background: #dde3ee;
+  --color-surface-bright: #343a42;
+  --color-on-tertiary-fixed: #3a0b00;
+  --color-surface-container-lowest: #090f16;
+  --color-on-primary-fixed-variant: #005048;
+  --color-surface-container-highest: #2f353e;
+  --color-surface: #121820;
+  --color-on-error-container: #ffdad6;
+  --color-on-secondary-fixed-variant: #004395;
+  --color-outline-variant: #2D3748;
+  --color-secondary-fixed: #d8e2ff;
+  --color-on-primary-container: #00423b;
+  --color-on-tertiary: #5e1800;
+  --color-outline: #859490;
+  --color-primary-fixed-dim: #4fdbc8;
+  --color-on-surface: #dde3ee;
+  --color-secondary-fixed-dim: #adc6ff;
+  --color-surface-variant: #2f353e;
+  --color-inverse-surface: #dde3ee;
+  --color-tertiary-fixed-dim: #ffb59e;
+  --color-surface-tint: #4fdbc8;
+
+  --spacing-lg: 48px;
+  --spacing-xl: 80px;
+  --spacing-xs: 4px;
+  --spacing-base: 8px;
+  --spacing-container-max: 1200px;
+  --spacing-gutter: 24px;
+  --spacing-md: 24px;
+  --spacing-sm: 12px;
+
+  --font-headline-md: 'Inter', sans-serif;
+  --font-headline-sm: 'Inter', sans-serif;
+  --font-label-code: 'JetBrains Mono', monospace;
+  --font-display-lg: 'Inter', sans-serif;
+  --font-body-lg: 'Inter', sans-serif;
+  --font-body-md: 'Inter', sans-serif;
+  --font-body-sm: 'Inter', sans-serif;
+  --font-headline-md-mobile: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #0A0E14; /* Base Level 0 */
+  color: var(--color-on-background);
+  min-height: max(884px, 100dvh);
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.shadow-elevated {
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+}
